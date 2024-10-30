@@ -62,9 +62,9 @@ public class adminController {
 		cateservice.save(entity);
 		String message = "";
 		if (cateModel.isEdit() == true) {
-			message = "Category is Edited!!!!!";
+			message = "edited";
 		} else {
-			message = "Category is saved!!!!";
+			message = "saved";
 		}
 		model.addAttribute("message", message);
 

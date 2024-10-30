@@ -11,9 +11,9 @@
 <body>
 	<section layout:fragment="content" style="display: flex; justify-content: center">
 		<div >
-			<h1>Chào mừng đến trang chủ</h1>
+			<h1 th:text="#{iotstar.message.hello}">Chào mừng đến trang chủ</h1>
 			<h2>Bài tập lập trình web</h2>
-			<a href="/admin/category">Danh sách Category</a>
+			<a href="/admin/category" th:text=#{iotstar.value.listCate}>Danh sách Category</a>
 		</div>
 
 	</section>
