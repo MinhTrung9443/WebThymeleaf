@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="~{/views/admin/layout.html}">
+<head>
+<meta charset="UTF-8">
+<title th:text="'Trang chủ'">Trang chủ</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<section layout:fragment="content" style="display: flex; justify-content: center">
+		<div >
+			<h1>Chào mừng đến trang chủ</h1>
+			<h2>Bài tập lập trình web</h2>
+			<a href="/admin/category">Danh sách Category</a>
+		</div>
+
+	</section>
+</body>
+</html>

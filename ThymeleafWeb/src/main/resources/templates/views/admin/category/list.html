@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorate="~{/views/admin/layout.html}">
+<head>
+<meta charset="UTF-8">
+<title>Danh sach Category</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body layout:fragment="content">
+	<a href="/admin/category/add">Them category</a>
+	<table border="1" , width=100%>
+		<tr>
+			<th>STT</th>
+			<th>CategoryId</th>
+			<th>CategoryName</th>
+			<th>Image</th>
+			<th>Status</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="cate,iterStat : ${list}">
+			<td th:text="${iterStat.index + 1}">so thu tu</td>
+			<td th:text="${cate.id}">id</td>
+			<td th:text="${cate.name}">name</td>
+			<td th:text="${cate.image}">image</td>
+			<td th:text="${cate.status}">status</td>
+			<td><a th:href="@{/admin/category/edit/{id}(id=${cate.id})}"
+				class="center">Sửa</a> | <a
+				th:href="@{/admin/category/delete/{id}(id=${cate.id})}"
+				class="center">Xóa</a></td>
+		</tr>
+
+	</table>
+	<a href="/admin/category/search">Tim category theo ten</a>
+</body>
+</html>

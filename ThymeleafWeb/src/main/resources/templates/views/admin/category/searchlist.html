@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorate="~{/views/admin/layout.html}">
+<head>
+<title>Danh sách Category</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body layout:fragment="content">
+	<h1>Danh sách Category</h1>
+
+
+	<table border="1" width=100% >
+		<thead>
+			<tr>
+				<th>STT</th>
+				<th>CategoryId</th>
+				<th>CategoryName</th>
+				<th>Image</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cate,iterStat : ${categoryPage.content}">
+				<td th:text="${iterStat.index + 1}">so thu tu</td>
+			<td th:text="${cate.id}">id</td>
+			<td th:text="${cate.name}">name</td>
+			<td th:text="${cate.image}">image</td>
+			<td th:text="${cate.status}">status</td>
+			<td><a th:href="@{/admin/category/edit/{id}(id=${cate.id})}"
+				class="center">Sửa</a> | <a
+				th:href="@{/admin/category/delete/{id}(id=${cate.id})}"
+				class="center">Xóa</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div>
+		<span>Trang hiện tại:</span>
+		 <span th:text="${categoryPage.number + 1}"></span>
+		  <span> / </span> <span>Tổng
+			trang: <span th:text="${categoryPage.totalPages}"></span>
+		</span>
+	</div>
+
+	<div>
+		<ul>
+        <li th:each="pageNumber : ${pageNumbers}">
+            <a th:href="@{/admin/category/searchlist(name=${name}, page=${pageNumber}, size=${categoryPage.size})}"
+               th:text="${pageNumber}"
+               th:classappend="${pageNumber == currentPage} ? 'active' : ''">
+            </a>
+        </li>
+    </ul>
+	</div>
+</body>
+</html>

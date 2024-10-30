@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/views/admin/layout.html}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhập Thông Tin Danh Mục</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<section layout:fragment="content">
+		<div class="container mt-5">
+
+			<form action="/admin/category/save" method="POST"
+				th:object=${category}>
+				<div class="form-group">
+					<h2 class="text-center"
+						th:text="${category.isEdit ? 'Nhập thông tin chỉnh sửa' : 'Thêm mới category'}"></h2>
+				</div>
+				<div class="form-group" hidden="hidden" th:if="${category.isEdit}">
+					<input type="text" class="form-control" id="id" name="id" required
+						th:value="${category.id}">
+				</div>
+				<div class="form-group">
+					<label for="name">Tên Danh Mục:</label> <input type="text"
+						class="form-control" id="name" name="name" required
+						th:value="${category.name}"> <small
+						class="form-text text-danger" id="name-error"></small>
+				</div>
+				<div class="form-group">
+					<label for="image">Hình Ảnh:</label> <input
+						th:value="${category.image}" type="file" class="form-control-file"
+						id="image" name="image" accept="image/*">
+				</div>
+				<div class="form-group">
+					<label for="status">Trạng Thái:</label> <select
+						class="form-control" id="status" name="status">
+						<option value="">Chọn trạng thái</option>
+						<option value=0 th:selected="${category.status == 0}">Không
+							hoạt động</option>
+						<option value=1 th:selected="${category.status == 1}">Hoạt
+							động</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary">Lưu Thông Tin</button>
+			</form>
+		</div>
+
+		<script>
+			// Validation Example for the Name field
+			document
+					.querySelector('form')
+					.addEventListener(
+							'submit',
+							function(event) {
+								const nameInput = document
+										.getElementById('name');
+								const errorText = document
+										.getElementById('name-error');
+
+								if (!nameInput.value.trim()) {
+									event.preventDefault(); // Prevent form submission
+									errorText.textContent = 'Không được bỏ trống'; // Show error message
+								} else {
+									errorText.textContent = ''; // Clear error message
+								}
+							});
+		</script>
+	</section>
+
+</body>
+</html>
